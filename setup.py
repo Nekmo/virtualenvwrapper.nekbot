@@ -11,7 +11,6 @@ __author__ = 'nekmo'
 
 
 from setuptools import setup, find_packages
-from pip.req import parse_requirements
 
 from distutils.util import convert_path
 from fnmatch import fnmatchcase
