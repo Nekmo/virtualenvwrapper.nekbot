@@ -147,8 +147,6 @@ for module in MODULES:
         only_in_packages=False,
     ))
 
-print(package_data)
-
 setup(
     name=PROJECT,
     version=VERSION,
