@@ -142,8 +142,8 @@ package_data = {'': ROOT_INCLUDE}
 
 for module in MODULES:
     package_data.update(find_package_data(
-        module,
-        package=module,
+        'virtualenvwrapper',
+        package='virtualenvwrapper',
         only_in_packages=False,
     ))
 
