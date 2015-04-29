@@ -18,7 +18,6 @@ from fnmatch import fnmatchcase
 
 import os
 import sys
-import glob
 import uuid
 
 try:
@@ -30,20 +29,6 @@ __dir__ = os.path.abspath(os.path.dirname(__file__))
 
 requirements = parse_requirements('requirements.txt', session=uuid.uuid1())
 install_requires = [str(ir.req) for ir in requirements if not ir.url]
-
-packages = find_packages(__dir__)
-# Prevent include symbolic links
-for package in tuple(packages):
-    path = os.path.join(__dir__, package.replace('.', '/'))
-    if not os.path.exists(path): continue
-    if not os.path.islink(path): continue
-    packages.remove(package)
-
-# dependency_links = []
-# for i, dependency in enumerate(install_requires):
-#     if not re.findall('(hg|git|svn|bzr)\+', dependency): continue
-#     install_requires[i] = dependency.split('#egg=')[1]
-#     dependency_links.append(dependency.replace('-e ', ''))
 
 
 ##############################################################################
@@ -140,12 +125,6 @@ def find_package_data(where='.', package='',
 description = 'Virtualenvwrapper installer for NekBot project, a multiprotocol bot.'
 package_data = {'': ROOT_INCLUDE}
 
-for module in MODULES:
-    package_data.update(find_package_data(
-        'virtualenvwrapper',
-        package='virtualenvwrapper',
-        only_in_packages=False,
-    ))
 
 setup(
     name=PROJECT,
@@ -183,15 +162,20 @@ setup(
     provides=[PROJECT],
     install_requires=install_requires,
 
-    packages=packages,
+    packages=find_packages(),
     include_package_data=True,
     # Scan the input for package information
     # to grab any data files (text, images, etc.)
     # associated with sub-packages.
-    package_data=package_data,
+    package_data= find_package_data(
+        'virtualenvwrapper',
+        package='virtualenvwrapper',
+        only_in_packages=False,
+    ),
 
     download_url='',
-    keywords=[],
+
+    keywords=['virtualenvwrapper', 'nekbot', 'bot', 'irc', 'jabber', 'xmpp', 'telegram'],
 
     entry_points={
         'virtualenvwrapper.project.template': [
