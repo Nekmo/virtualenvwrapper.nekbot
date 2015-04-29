@@ -17,6 +17,6 @@ def template(args):
     project, project_dir = args
     os.chdir(project_dir)
     subprocess.check_call(['pip', 'install', 'nekbot'])
-    log.info('Running "nekbot-admin createbot %s"', project)
-    subprocess.check_call(['nekbot-admin', 'createbot', project])
+    log.info('Running "nekbot-admin createbot %s ."', project)
+    subprocess.check_call(['nekbot-admin', 'createbot', project, '.'])
     return
