@@ -27,9 +27,6 @@ except IOError:
 
 __dir__ = os.path.abspath(os.path.dirname(__file__))
 
-requirements = parse_requirements('requirements.txt', session=uuid.uuid1())
-install_requires = [str(ir.req) for ir in requirements if not ir.url]
-
 
 ##############################################################################
 # find_package_data is an Ian Bicking creation.
@@ -160,7 +157,7 @@ setup(
     platforms=['linux'],
 
     provides=[PROJECT],
-    install_requires=install_requires,
+    install_requires=['virtualenv', 'virtualenvwrapper'],
 
     packages=find_packages(),
     include_package_data=True,
