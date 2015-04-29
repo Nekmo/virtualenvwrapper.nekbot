@@ -125,6 +125,7 @@ package_data = {'': ROOT_INCLUDE}
 setup(
     name=PROJECT,
     version=VERSION,
+
     description=description,
     long_description=long_description,
 
